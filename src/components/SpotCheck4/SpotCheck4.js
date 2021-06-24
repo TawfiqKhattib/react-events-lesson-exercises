@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Quote from './Quote';
 class SpotCheck3 extends Component {
 
     constructor() {
@@ -11,11 +11,17 @@ class SpotCheck3 extends Component {
                 { id: "50ggr2", text: "Don't stop climbing the mountain. Instead, keep climbing the mountain.", likes: 33 }
             ]
         }
+        this.likeQuote=this.likeQuote.bind(this);
     }
 
-    likeQuote = quoteId => {
+    likeQuote = (quoteId) => {
 
-        //Update the state accordingly based on quoteId
+        let currentQuotes = [...this.state.quotes]
+        currentQuotes.find(q => q.id === quoteId).likes++
+    
+        this.setState({
+          quotes: currentQuotes
+        })
 
     }
 
@@ -27,11 +33,12 @@ class SpotCheck3 extends Component {
             <div>
                 {this.state.quotes.map(q => {
                     return (
-                        <div key={q.id} className="quotes">
-                            <sup>{q.likes}</sup>
-                            <span onClick={this.likeQuote}>+</span>
-                            <span>{q.text}</span>
-                        </div>
+                        // <div key={q.id} className="quotes">
+                        //     <sup>{q.likes}</sup>
+                        //     <span onClick={this.likeQuote}>+</span>
+                        //     <span>{q.text}</span>
+                        // </div>
+                        <Quote quote={q} likeQuote={this.likeQuote} />
                     )
                 })}
             </div>

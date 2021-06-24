@@ -10,19 +10,23 @@ class Exercise1 extends Component {
         "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/220px-PerfectStrawberry.jpg"],
       currentImg: 0
     }
+    this.shiftImageBack = this.shiftImageBack.bind(this);
+    this.shiftImageForward=this.shiftImageForward.bind(this);
   }
   shiftImageBack = () => {
-    // this should reduce currentImg by 1
+    this.setState({currentImg:this.state.currentImg-1})
   }
   shiftImageForward = () => {
     // shiftImageForward - this should increase currentImg by 1
+    this.setState({currentImg:this.state.currentImg+1})
   }
 
   render() {
     return (
       <div >
-        {/* render two buttons with the classes "back" and "forward",
-           and the image at index currentImg, in an img tag */}
+        <button onClick={this.shiftImageBack}> Back</button>
+        <button onClick={this.shiftImageForward}> Forward</button>
+        <img src={this.state.images[this.state.currentImg%3]}></img>
       </div>
     );
   }

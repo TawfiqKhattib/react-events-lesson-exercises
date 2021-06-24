@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 class Conversation extends Component {
   //should recieve the prop "convo"
+  displayConvo=()=>{
+    this.props.displarConvo(null);
+  }
   render() {
     return (
       <div >
@@ -15,6 +18,9 @@ class Conversation extends Component {
 
         {/* You should render a back button with the class "back" 
             When clicked it should set the state of displayConversation to null*/}
+        {/* <div>{this.props.convoerastion}</div> */}
+        <button onClick={this.displayConvo}> back </button>
+        {this.props.convoerastion.map(conver=> conver!=null ?conver.convo.map(elem=>elem.sender==="self" ? <div>Me: {elem.text}</div> : <div>{conver.with}: {elem.text}</div>) : null) }
       </div>
     );
   }
